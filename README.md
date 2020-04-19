@@ -21,24 +21,28 @@ const Example = () => {
     const { keyState } = useKeys([
         // adds hot key for '/' when focus is on body, ignores typing in an input field
         {
+            id: 'slash',
             key: '/',
             // callback to be called only when this hot key '/' is pressed
             onKey: () => {
-                console.log('%c onKey() called for / ', 'color: yellow')
+                console.log('onKey() called for / ')
             },
         },
         // adds hot key for '>' that also works in input fields
         {
+            id: 'greaterThan',
             key: '>',
             includeFormElements: true,
         },
         // adds hot key for 'Ctrl+x' when focus is on body, ignores typing in an input field
         {
+            id: 'ctrlX',
             key: 'x',
             ctrlKey: true,
         },
         // adds hot key for 'Ctrl+Shift+1' that also works in input fields
         {
+            id: 'ctrlShift1',
             key: '1',
             includeFormElements: true,
             ctrlKey: true,
