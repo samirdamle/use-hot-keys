@@ -1,6 +1,6 @@
 # use-keys
 
-> Reat hook to enable hot keys in the app. A hot key is a keyboard key pressed when the focus is on the page body, not in a form input field. When a user presses the hot key, the hook provides an updated state for hotKey. You can set multiple hot keys while initiating the hook.
+> Reat hook to enable hot keys in the app. A hot key is a keyboard key pressed when the focus is on the page body, not in a form input field. When a user presses the hot key, the hook provides an updated state for keyState. You can set multiple hot keys while initiating the hook.
 
 [![NPM](https://img.shields.io/npm/v/use-keys.svg)](https://www.npmjs.com/package/use-keys) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -18,26 +18,26 @@ import * as React from 'react'
 import useKeys from 'use-keys'
 
 const Example = () => {
-    const { hotKey } = useKeys([
-        // adds hotKey for '/' when focus is on body, ignores typing in an input field
+    const { keyState } = useKeys([
+        // adds keyState for '/' when focus is on body, ignores typing in an input field
         {
             key: '/',
-            // callback to be called only when this hotKey '/' is pressed
-            onHotKey: () => {
-                console.log('%c onHotKey() called for / ', 'color: yellow')
+            // callback to be called only when this keyState '/' is pressed
+            onKey: () => {
+                console.log('%c onKey() called for / ', 'color: yellow')
             },
         },
-        // adds hotKey for '>' that also works in input fields
+        // adds keyState for '>' that also works in input fields
         {
             key: '>',
             includeFormElements: true,
         },
-        // adds hotKey for 'Ctrl+x' when focus is on body, ignores typing in an input field
+        // adds keyState for 'Ctrl+x' when focus is on body, ignores typing in an input field
         {
             key: 'x',
             ctrlKey: true,
         },
-        // adds hotKey for 'Ctrl+Shift+1' that also works in input fields
+        // adds keyState for 'Ctrl+Shift+1' that also works in input fields
         {
             key: '1',
             includeFormElements: true,
@@ -46,9 +46,9 @@ const Example = () => {
         },
     ])
 
-    // hotKey will be null until user presses a matching hotKey
-    // in which case hotKey.key will return the key string e.g. '/'
-    return <div>{hotKey && hotKey.key}</div>
+    // keyState will be null until user presses a matching keyState
+    // in which case keyState.key will return the key string e.g. '/'
+    return <div>{keyState && keyState.key}</div>
 }
 ```
 

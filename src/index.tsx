@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 const formElements: String[] = ['A', 'INPUT', 'TEXTAREA', 'LABEL', 'FIELDSET', 'LEGEND', 'SELECT', 'OPTGROUP', 'OPTION', 'BUTTON', 'DATALIST', 'OUTPUT']
 const modifiers = { altKey: 'Alt', ctrlKey: 'Ctrl', metaKey: 'Meta', shiftKey: 'Shift' }
 
-type HotKey = {
+type KeyState = {
     id: String | Number
     key: String
     includeFormElements?: Boolean
@@ -12,20 +12,20 @@ type HotKey = {
     metaKey?: Boolean
     shiftKey?: Boolean
     target?: Element
-    onHotKey?: Function
+    onKey?: Function
 } | null
 
-type useKeysPropsNew = HotKey[]
+type useKeysPropsNew = KeyState[]
 
-const useKeys = (hotKeys: useKeysPropsNew = []) => {
-    const [hotKey, setHotKey] = useState<HotKey>(null)
+const useKeys = (keyStates: useKeysPropsNew = []) => {
+    const [keyState, setKeyState] = useState<KeyState>(null)
 
     useEffect(() => {
         const fn = (evt: KeyboardEvent) => {
-            if (!(Array.isArray(hotKeys) && hotKeys.length)) return
+            if (!(Array.isArray(keyStates) && keyStates.length)) return
 
-            // console.log('evt')
-            // console.log(evt)
+            console.log('evt')
+            console.log(evt)
 
             const tag: Element | null = evt.target as Element
 
@@ -33,21 +33,21 @@ const useKeys = (hotKeys: useKeysPropsNew = []) => {
             }
 
             if (tag && tag.tagName) {
-                let draftHotKey: HotKey = null
-                let matchedHotKey = hotKeys.find((hk) => hk?.key === evt.key && Object.keys(modifiers).every((mod) => hk && (hk[mod] === true ? !!evt[mod] : true)))
+                let draftKeyState: KeyState = null
+                let matchedKeyState = keyStates.find((hk) => hk?.key === evt.key && Object.keys(modifiers).every((mod) => hk && (hk[mod] === true ? !!evt[mod] : true)))
 
-                if (matchedHotKey) {
-                    // console.log('matchedHotKey')
-                    // console.log(matchedHotKey)
+                if (matchedKeyState) {
+                    // console.log('matchedKeyState')
+                    // console.log(matchedKeyState)
 
-                    if (matchedHotKey.includeFormElements || !formElements.includes(tag.tagName.toUpperCase())) {
-                        const { onHotKey, ...rest } = matchedHotKey
-                        draftHotKey = { ...rest, target: tag }
-                        onHotKey && typeof onHotKey === 'function' && onHotKey(rest)
+                    if (matchedKeyState.includeFormElements || !formElements.includes(tag.tagName.toUpperCase())) {
+                        const { onKey, ...rest } = matchedKeyState
+                        draftKeyState = { ...rest, target: tag }
+                        onKey && typeof onKey === 'function' && onKey(rest)
                     }
                 }
 
-                setHotKey(draftHotKey)
+                setKeyState(draftKeyState)
             }
         }
 
@@ -58,7 +58,7 @@ const useKeys = (hotKeys: useKeysPropsNew = []) => {
         }
     }, [])
 
-    return { hotKey }
+    return { keyState }
 }
 
 export { useKeys }

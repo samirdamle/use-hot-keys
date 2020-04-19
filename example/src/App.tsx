@@ -3,12 +3,12 @@ import React from 'react'
 import { useKeys } from 'use-keys'
 
 const App = () => {
-    const { hotKey } = useKeys([
+    const { keyState } = useKeys([
         {
             id: 0,
             key: '/',
-            onHotKey: () => {
-                console.log('%c onHotKey() called for / ', 'color: yellow')
+            onKey: () => {
+                console.log('%c onKey() called for / ', 'color: yellow')
             },
         },
         {
@@ -28,16 +28,22 @@ const App = () => {
             ctrlKey: true,
             shiftKey: true,
         },
+        {
+            id: 3,
+            key: ']',
+            includeFormElements: true,
+            metaKey: true,
+        },
     ])
 
     let modifierText = ''
 
-    if (hotKey) {
+    if (keyState) {
         const modifiers = { altKey: 'Alt', ctrlKey: 'Ctrl', metaKey: 'Meta', shiftKey: 'Shift' }
 
         modifierText = Object.keys(modifiers)
             // @ts-ignore
-            .map((mod) => (hotKey && hotKey[mod] ? modifiers[mod] + ' + ' : ''))
+            .map((mod) => (keyState && keyState[mod] ? modifiers[mod] + ' + ' : ''))
             .join('')
     }
     return (
@@ -45,7 +51,7 @@ const App = () => {
             <h1>React Custom Hook: useKeys</h1>
             <div>Press a key on the page body or in the input field.</div>
             <div>
-                <h3>Hot Keys:</h3>
+                <h3>Keys:</h3>
                 <table style={{ width: '600px' }}>
                     <tbody>
                         <tr>
@@ -64,6 +70,10 @@ const App = () => {
                             <td>Ctrl + Shift + 1</td>
                             <td>should work on body and inside a form field</td>
                         </tr>
+                        <tr>
+                            <td>Meta + ]</td>
+                            <td>should work on body and inside a form field</td>
+                        </tr>
                     </tbody>
                 </table>
                 <br />
@@ -75,12 +85,12 @@ const App = () => {
             </div>
             <div>
                 <h3>Result:</h3>
-                {hotKey ? (
+                {keyState ? (
                     <div>
-                        &#x1F525; You pressed a hotKey &#x1F449; <strong>{modifierText + hotKey?.key}</strong> with id: {hotKey.id}
+                        &#x1F525; You pressed a keyState &#x1F449; <strong>{modifierText + keyState?.key}</strong> with id: {keyState.id}
                     </div>
                 ) : (
-                    <div>&#x1F634; Not a hotKey</div>
+                    <div>&#x1F634; Not a keyState</div>
                 )}
             </div>
         </div>
