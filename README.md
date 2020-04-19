@@ -21,8 +21,8 @@ const Example = () => {
     const { keyState } = useKeys([
         // adds hot key for '/' when focus is on body, ignores typing in an input field
         {
-            id: 'slash',
-            key: '/',
+            id: 'slash',  // id can be anything
+            key: '/',     // key should match event.key
             // callback to be called only when this hot key '/' is pressed
             onKey: () => {
                 console.log('onKey() called for / ')
