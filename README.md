@@ -15,15 +15,11 @@ npm install --save use-hot-keys
 ```tsx
 import * as React from 'react'
 
-import { useMyHook } from 'use-hot-keys'
+import useHotKeys from 'use-hot-keys'
 
 const Example = () => {
-  const example = useMyHook()
-  return (
-    <div>
-      {example}
-    </div>
-  )
+    const { hotKey } = useHotKeys()
+    return <div>{hotKey.key}</div>
 }
 ```
 
