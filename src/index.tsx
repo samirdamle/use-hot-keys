@@ -3,11 +3,6 @@ import { useEffect, useState } from 'react'
 const formElements: String[] = ['A', 'INPUT', 'TEXTAREA', 'LABEL', 'FIELDSET', 'LEGEND', 'SELECT', 'OPTGROUP', 'OPTION', 'BUTTON', 'DATALIST', 'OUTPUT']
 const modifiers = { altKey: 'Alt', ctrlKey: 'Ctrl', metaKey: 'Meta', shiftKey: 'Shift' }
 
-/* type useHotKeysProps = {
-    key: String
-    onHotKey: Function
-} */
-
 type HotKey = {
     key: String
     includeFormElements?: Boolean
