@@ -22,6 +22,7 @@ const Example = () => {
         // adds hotKey for / when focus is on body, ignores typing in an input field
         {
             key: '/',
+            // callback to be called only when this hotKey / is pressed
             onHotKey: () => {
                 console.log('%c onHotKey() called for / ', 'color: yellow')
             },
@@ -44,7 +45,9 @@ const Example = () => {
             shiftKey: true,
         },
     ])
-    return <div>{hotKey.key}</div>
+
+    // hotKey will be null until user presses a matching hotKey, in which case hotKey.key will return the hotKey string
+    return <div>{hotKey && hotKey.key}</div>
 }
 ```
 
