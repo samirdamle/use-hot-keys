@@ -19,25 +19,25 @@ import useHotKeys from 'use-hot-keys'
 
 const Example = () => {
     const { hotKey } = useHotKeys([
-        // adds hotKey for / when focus is on body, ignores typing in an input field
+        // adds hotKey for '/' when focus is on body, ignores typing in an input field
         {
             key: '/',
-            // callback to be called only when this hotKey / is pressed
+            // callback to be called only when this hotKey '/' is pressed
             onHotKey: () => {
                 console.log('%c onHotKey() called for / ', 'color: yellow')
             },
         },
-        // adds hotKey for > that also works in input fields
+        // adds hotKey for '>' that also works in input fields
         {
             key: '>',
             includeFormElements: true,
         },
-        // adds hotKey for Ctrl + x when focus is on body, ignores typing in an input field
+        // adds hotKey for 'Ctrl+x' when focus is on body, ignores typing in an input field
         {
             key: 'x',
             ctrlKey: true,
         },
-        // adds hotKey for Ctrl + Shift + 1 that also works in input fields
+        // adds hotKey for 'Ctrl+Shift+1' that also works in input fields
         {
             key: '1',
             includeFormElements: true,
@@ -46,7 +46,7 @@ const Example = () => {
         },
     ])
 
-    // hotKey will be null until user presses a matching hotKey, in which case hotKey.key will return the hotKey string
+    // hotKey will be null until user presses a matching hotKey, in which case hotKey.key will return the key string e.g. '/'
     return <div>{hotKey && hotKey.key}</div>
 }
 ```
