@@ -15,14 +15,29 @@ const App = () => {
     }) */
     const { hotKey } = useHotKeys([
         {
+            id: 0,
             key: '/',
             onHotKey: () => {
                 console.log('%c onHotKey() called for / ', 'color: yellow')
             },
         },
-        { key: '>', includeFormElements: true },
-        { key: 'x', ctrlKey: true },
-        { key: '1', includeFormElements: true, ctrlKey: true, shiftKey: true },
+        {
+            id: 1,
+            key: '>',
+            includeFormElements: true,
+        },
+        {
+            id: 2,
+            key: 'x',
+            ctrlKey: true,
+        },
+        {
+            id: 3,
+            key: '1',
+            includeFormElements: true,
+            ctrlKey: true,
+            shiftKey: true,
+        },
     ])
 
     let modifierText = ''
@@ -70,7 +85,13 @@ const App = () => {
             </div>
             <div>
                 <h3>Result:</h3>
-                {hotKey ? <div>&#x1F525; You pressed a hotKey &#x1F449; {modifierText + hotKey?.key}</div> : <div>&#x1F634; Not a hotKey</div>}
+                {hotKey ? (
+                    <div>
+                        &#x1F525; You pressed a hotKey &#x1F449; <strong>{modifierText + hotKey?.key}</strong> with id: {hotKey.id}
+                    </div>
+                ) : (
+                    <div>&#x1F634; Not a hotKey</div>
+                )}
             </div>
         </div>
     )

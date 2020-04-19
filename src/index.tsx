@@ -4,6 +4,7 @@ const formElements: String[] = ['A', 'INPUT', 'TEXTAREA', 'LABEL', 'FIELDSET', '
 const modifiers = { altKey: 'Alt', ctrlKey: 'Ctrl', metaKey: 'Meta', shiftKey: 'Shift' }
 
 type HotKey = {
+    id: String | Number
     key: String
     includeFormElements?: Boolean
     altKey?: Boolean
