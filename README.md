@@ -1,6 +1,6 @@
 # use-keys
 
-> Reat hook to enable hot keys in the app. A hot key is a keyboard key pressed when the focus is on the page body, not in a form input field. When a user presses the hot key, the hook provides an updated state for keyState. You can set multiple hot keys while initiating the hook.
+Reat hook to enable hot keys in the app. A hot key is a keyboard key pressed when the focus is on the page body, not in a form input field. When a user presses the hot key, the hook provides an updated state for keyState. You can set multiple hot keys while initiating the hook.
 
 [![NPM](https://img.shields.io/npm/v/use-keys.svg)](https://www.npmjs.com/package/use-keys) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -19,25 +19,25 @@ import useKeys from 'use-keys'
 
 const Example = () => {
     const { keyState } = useKeys([
-        // adds keyState for '/' when focus is on body, ignores typing in an input field
+        // adds hot key for '/' when focus is on body, ignores typing in an input field
         {
             key: '/',
-            // callback to be called only when this keyState '/' is pressed
+            // callback to be called only when this hot key '/' is pressed
             onKey: () => {
                 console.log('%c onKey() called for / ', 'color: yellow')
             },
         },
-        // adds keyState for '>' that also works in input fields
+        // adds hot key for '>' that also works in input fields
         {
             key: '>',
             includeFormElements: true,
         },
-        // adds keyState for 'Ctrl+x' when focus is on body, ignores typing in an input field
+        // adds hot key for 'Ctrl+x' when focus is on body, ignores typing in an input field
         {
             key: 'x',
             ctrlKey: true,
         },
-        // adds keyState for 'Ctrl+Shift+1' that also works in input fields
+        // adds hot key for 'Ctrl+Shift+1' that also works in input fields
         {
             key: '1',
             includeFormElements: true,
