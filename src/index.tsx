@@ -34,7 +34,8 @@ const useKeys = (keyStates: useKeysPropsNew = []) => {
 
             if (tag && tag.tagName) {
                 let draftKeyState: KeyState = null
-                let matchedKeyState = keyStates.find((hk) => hk?.key === evt.key && Object.keys(modifiers).every((mod) => hk && (hk[mod] === true ? !!evt[mod] : true)))
+                // let matchedKeyState = keyStates.find((hk) => hk?.key === evt.key && Object.keys(modifiers).every((mod) => hk && (hk[mod] === true ? !!evt[mod] : true)))
+                let matchedKeyState = keyStates.find((hk) => hk?.key === evt.key && Object.keys(modifiers).every((mod) => hk && !!hk[mod] === !!evt[mod]))
 
                 if (matchedKeyState) {
                     // console.log('matchedKeyState')
