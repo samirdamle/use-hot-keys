@@ -18,7 +18,32 @@ import * as React from 'react'
 import useHotKeys from 'use-hot-keys'
 
 const Example = () => {
-    const { hotKey } = useHotKeys()
+    const { hotKey } = useHotKeys([
+        // adds hotKey for / when focus is on body, ignores typing in an input field
+        {
+            key: '/',
+            onHotKey: () => {
+                console.log('%c onHotKey() called for / ', 'color: yellow')
+            },
+        },
+        // adds hotKey for > that also works in input fields
+        {
+            key: '>',
+            includeFormElements: true,
+        },
+        // adds hotKey for Ctrl + x when focus is on body, ignores typing in an input field
+        {
+            key: 'x',
+            ctrlKey: true,
+        },
+        // adds hotKey for Ctrl + Shift + 1 that also works in input fields
+        {
+            key: '1',
+            includeFormElements: true,
+            ctrlKey: true,
+            shiftKey: true,
+        },
+    ])
     return <div>{hotKey.key}</div>
 }
 ```
