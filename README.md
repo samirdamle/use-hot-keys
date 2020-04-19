@@ -46,7 +46,8 @@ const Example = () => {
         },
     ])
 
-    // hotKey will be null until user presses a matching hotKey, in which case hotKey.key will return the key string e.g. '/'
+    // hotKey will be null until user presses a matching hotKey
+    // in which case hotKey.key will return the key string e.g. '/'
     return <div>{hotKey && hotKey.key}</div>
 }
 ```
