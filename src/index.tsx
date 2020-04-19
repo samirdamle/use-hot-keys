@@ -1,55 +1,68 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const formElements: String[] = ['A', 'INPUT', 'TEXTAREA', 'LABEL', 'FIELDSET', 'LEGEND', 'SELECT', 'OPTGROUP', 'OPTION', 'BUTTON', 'DATALIST', 'OUTPUT']
+const modifiers = { altKey: 'Alt', ctrlKey: 'Ctrl', metaKey: 'Meta', shiftKey: 'Shift' }
 
-type useHotKeysProps = {
+/* type useHotKeysProps = {
     key: String
     onHotKey: Function
-}
+} */
 
-const useHotKeys = ({ key, onHotKey }: useHotKeysProps) => {
-    const [hotKey, setHotKey] = useState<KeyboardEvent | null>(null)
-    const callback = useRef(onHotKey)
-    // callback.current = onHotKey
+type HotKey = {
+    key: String
+    includeFormElements?: Boolean
+    altKey?: Boolean
+    ctrlKey?: Boolean
+    metaKey?: Boolean
+    shiftKey?: Boolean
+    target?: Element
+    onHotKey?: Function
+} | null
 
-    const setOnHotKey = (fn: Function) => {
-        callback.current = fn
-    }
+type UseHotKeysPropsNew = HotKey[]
+
+const useHotKeys = (hotKeys: UseHotKeysPropsNew = []) => {
+    const [hotKey, setHotKey] = useState<HotKey>(null)
 
     useEffect(() => {
         const fn = (evt: KeyboardEvent) => {
-            const tag: Element | null = evt.target as Element
-            if (!formElements.includes(tag?.tagName?.toUpperCase())) {
-                const modifiers = { altKey: 'Alt', ctrlKey: 'Ctrl', shiftKey: 'Shift' }
-                const keyValue =
-                    Object.keys(modifiers)
-                        .map((mod) => (evt[mod] ? modifiers[mod] + ' + ' : ''))
-                        .join('') + evt.key
-                console.log('key = ', keyValue)
-                console.log('=========================')
+            if (!(Array.isArray(hotKeys) && hotKeys.length)) return
 
-                let val = null
-                if ((key == null || key.includes(evt.key)) && typeof callback.current === 'function') {
-                    val = evt
+            // console.log('evt')
+            // console.log(evt)
+
+            const tag: Element | null = evt.target as Element
+
+            if (formElements.includes(tag.tagName.toUpperCase())) {
+            }
+
+            if (tag && tag.tagName) {
+                let draftHotKey: HotKey = null
+                let matchedHotKey = hotKeys.find((hk) => hk?.key === evt.key && Object.keys(modifiers).every((mod) => hk && (hk[mod] === true ? !!evt[mod] : true)))
+
+                if (matchedHotKey) {
+                    // console.log('matchedHotKey')
+                    // console.log(matchedHotKey)
+
+                    if (matchedHotKey.includeFormElements || !formElements.includes(tag.tagName.toUpperCase())) {
+                        const { onHotKey, ...rest } = matchedHotKey
+                        draftHotKey = { ...rest, target: tag }
+                        onHotKey && typeof onHotKey === 'function' && onHotKey(rest)
+                    }
                 }
-                setHotKey(val)
-                callback.current(val)
+
+                setHotKey(draftHotKey)
             }
         }
 
-        window.document.addEventListener('keyup', fn)
+        window.document.addEventListener('keydown', fn)
 
         return () => {
-            window.document.removeEventListener('keyup', fn)
+            window.document.removeEventListener('keydown', fn)
         }
     }, [])
 
-    return { hotKey, setOnHotKey }
-}
-
-useHotKeys.defaultProps = {
-    match: '/',
-    onHotKey: () => {},
+    return { hotKey }
 }
 
 export { useHotKeys }

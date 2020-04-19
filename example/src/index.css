@@ -1,5 +1,19 @@
-/* body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-} */
+body {
+    margin: 0;
+    padding: 2rem;
+    font-family: sans-serif;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table td {
+    padding: 0.5rem;
+    border: solid #ccc 1px;
+}
+
+input {
+    padding: 0.25rem;
+    font-size: 1rem;
+}
