@@ -3,16 +3,6 @@ import React from 'react'
 import { useKeys } from 'use-keys'
 
 const App = () => {
-    /* const { hotKey, setOnHotKey } = useKeys({
-        key: '/',
-        onHotKey: (evt: KeyboardEvent) => {
-            console.log('default onHotKey =', evt)
-        },
-    }) */
-
-    /* setOnHotKey((evt: KeyboardEvent) => {
-        console.log(evt)
-    }) */
     const { hotKey } = useKeys([
         {
             id: 0,
