@@ -15,9 +15,9 @@ type HotKey = {
     onHotKey?: Function
 } | null
 
-type UseHotKeysPropsNew = HotKey[]
+type useKeysPropsNew = HotKey[]
 
-const useHotKeys = (hotKeys: UseHotKeysPropsNew = []) => {
+const useKeys = (hotKeys: useKeysPropsNew = []) => {
     const [hotKey, setHotKey] = useState<HotKey>(null)
 
     useEffect(() => {
@@ -61,4 +61,4 @@ const useHotKeys = (hotKeys: UseHotKeysPropsNew = []) => {
     return { hotKey }
 }
 
-export { useHotKeys }
+export { useKeys }

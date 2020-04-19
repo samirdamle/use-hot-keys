@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { useHotKeys } from 'use-hot-keys'
+import { useKeys } from 'use-keys'
 
 const App = () => {
-    /* const { hotKey, setOnHotKey } = useHotKeys({
+    /* const { hotKey, setOnHotKey } = useKeys({
         key: '/',
         onHotKey: (evt: KeyboardEvent) => {
             console.log('default onHotKey =', evt)
@@ -13,7 +13,7 @@ const App = () => {
     /* setOnHotKey((evt: KeyboardEvent) => {
         console.log(evt)
     }) */
-    const { hotKey } = useHotKeys([
+    const { hotKey } = useKeys([
         {
             id: 0,
             key: '/',
@@ -52,7 +52,7 @@ const App = () => {
     }
     return (
         <div>
-            <h1>React Custom Hook: useHotKeys</h1>
+            <h1>React Custom Hook: useKeys</h1>
             <div>Press a key on the page body or in the input field.</div>
             <div>
                 <h3>Hot Keys:</h3>

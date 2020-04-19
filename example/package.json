@@ -1,6 +1,6 @@
 {
-    "name": "use-hot-keys-example",
-    "homepage": "https://samirdamle.github.io/use-hot-keys",
+    "name": "use-keys-example",
+    "homepage": "https://samirdamle.github.io/use-keys",
     "version": "0.0.1",
     "license": "MIT",
     "private": true,
@@ -8,7 +8,7 @@
         "react": "file:../node_modules/react",
         "react-dom": "^16.8.6",
         "react-scripts": "^3.0.1",
-        "use-hot-keys": "file:.."
+        "use-keys": "file:.."
     },
     "scripts": {
         "start": "react-scripts start",

@@ -1,8 +1,8 @@
 {
-  "short_name": "use-hot-keys",
-  "name": "use-hot-keys",
-  "start_url": "./index.html",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+    "short_name": "use-keys",
+    "name": "use-keys",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#ffffff"
 }
