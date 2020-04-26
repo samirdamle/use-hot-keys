@@ -29,8 +29,8 @@ const App = () => {
             shiftKey: true,
         },
         {
-            id: 3,
-            key: ']',
+            id: 4,
+            key: 'Backspace',
             includeFormElements: true,
             metaKey: true,
         },
@@ -71,7 +71,7 @@ const App = () => {
                             <td>should work on body and inside a form field</td>
                         </tr>
                         <tr>
-                            <td>Meta + ]</td>
+                            <td>Meta + Backspace</td>
                             <td>should work on body and inside a form field</td>
                         </tr>
                     </tbody>
