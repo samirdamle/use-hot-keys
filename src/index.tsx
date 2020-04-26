@@ -24,8 +24,8 @@ const useKeys = (keyStrokes: useKeysPropsNew = []) => {
         const fn = (evt: KeyboardEvent) => {
             if (!(Array.isArray(keyStrokes) && keyStrokes.length)) return
 
-            console.log('evt')
-            console.log(evt)
+            // console.log('evt')
+            // console.log(evt)
 
             const tag: Element | null = evt.target as Element
 
@@ -34,7 +34,6 @@ const useKeys = (keyStrokes: useKeysPropsNew = []) => {
 
             if (tag && tag.tagName) {
                 let draftKeyStroke: KeyStroke = null
-                // let matchedKeyStroke = keyStrokes.find((hk) => hk?.key === evt.key && Object.keys(modifiers).every((mod) => hk && (hk[mod] === true ? !!evt[mod] : true)))
                 let matchedKeyStroke = keyStrokes.find((hk) => hk?.key === evt.key && Object.keys(modifiers).every((mod) => hk && !!hk[mod] === !!evt[mod]))
 
                 if (matchedKeyStroke) {
