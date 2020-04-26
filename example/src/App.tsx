@@ -3,7 +3,7 @@ import React from 'react'
 import { useKeys } from 'use-keys'
 
 const App = () => {
-    const { keyState } = useKeys([
+    const { keyStroke } = useKeys([
         {
             id: 0,
             key: '/',
@@ -38,12 +38,12 @@ const App = () => {
 
     let modifierText = ''
 
-    if (keyState) {
+    if (keyStroke) {
         const modifiers = { altKey: 'Alt', ctrlKey: 'Ctrl', metaKey: 'Meta', shiftKey: 'Shift' }
 
         modifierText = Object.keys(modifiers)
             // @ts-ignore
-            .map((mod) => (keyState && keyState[mod] ? modifiers[mod] + ' + ' : ''))
+            .map((mod) => (keyStroke && keyStroke[mod] ? modifiers[mod] + ' + ' : ''))
             .join('')
     }
     return (
@@ -85,12 +85,12 @@ const App = () => {
             </div>
             <div>
                 <h3>Result:</h3>
-                {keyState ? (
+                {keyStroke ? (
                     <div>
-                        &#x1F525; You pressed a keyState &#x1F449; <strong>{modifierText + keyState?.key}</strong> with id: {keyState.id}
+                        &#x1F525; You pressed a keyStroke &#x1F449; <strong>{modifierText + keyStroke?.key}</strong> with id: {keyStroke.id}
                     </div>
                 ) : (
-                    <div>&#x1F634; Not a keyState</div>
+                    <div>&#x1F634; Not a keyStroke</div>
                 )}
             </div>
         </div>

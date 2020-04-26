@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 const formElements: String[] = ['A', 'INPUT', 'TEXTAREA', 'LABEL', 'FIELDSET', 'LEGEND', 'SELECT', 'OPTGROUP', 'OPTION', 'BUTTON', 'DATALIST', 'OUTPUT']
 const modifiers = { altKey: 'Alt', ctrlKey: 'Ctrl', metaKey: 'Meta', shiftKey: 'Shift' }
 
-type KeyState = {
+type KeyStroke = {
     id: String | Number
     key: String
     includeFormElements?: Boolean
@@ -15,14 +15,14 @@ type KeyState = {
     onKey?: Function
 } | null
 
-type useKeysPropsNew = KeyState[]
+type useKeysPropsNew = KeyStroke[]
 
-const useKeys = (keyStates: useKeysPropsNew = []) => {
-    const [keyState, setKeyState] = useState<KeyState>(null)
+const useKeys = (keyStrokes: useKeysPropsNew = []) => {
+    const [keyStroke, setKeyStroke] = useState<KeyStroke>(null)
 
     useEffect(() => {
         const fn = (evt: KeyboardEvent) => {
-            if (!(Array.isArray(keyStates) && keyStates.length)) return
+            if (!(Array.isArray(keyStrokes) && keyStrokes.length)) return
 
             console.log('evt')
             console.log(evt)
@@ -33,22 +33,22 @@ const useKeys = (keyStates: useKeysPropsNew = []) => {
             }
 
             if (tag && tag.tagName) {
-                let draftKeyState: KeyState = null
-                // let matchedKeyState = keyStates.find((hk) => hk?.key === evt.key && Object.keys(modifiers).every((mod) => hk && (hk[mod] === true ? !!evt[mod] : true)))
-                let matchedKeyState = keyStates.find((hk) => hk?.key === evt.key && Object.keys(modifiers).every((mod) => hk && !!hk[mod] === !!evt[mod]))
+                let draftKeyStroke: KeyStroke = null
+                // let matchedKeyStroke = keyStrokes.find((hk) => hk?.key === evt.key && Object.keys(modifiers).every((mod) => hk && (hk[mod] === true ? !!evt[mod] : true)))
+                let matchedKeyStroke = keyStrokes.find((hk) => hk?.key === evt.key && Object.keys(modifiers).every((mod) => hk && !!hk[mod] === !!evt[mod]))
 
-                if (matchedKeyState) {
-                    // console.log('matchedKeyState')
-                    // console.log(matchedKeyState)
+                if (matchedKeyStroke) {
+                    // console.log('matchedKeyStroke')
+                    // console.log(matchedKeyStroke)
 
-                    if (matchedKeyState.includeFormElements || !formElements.includes(tag.tagName.toUpperCase())) {
-                        const { onKey, ...rest } = matchedKeyState
-                        draftKeyState = { ...rest, target: tag }
+                    if (matchedKeyStroke.includeFormElements || !formElements.includes(tag.tagName.toUpperCase())) {
+                        const { onKey, ...rest } = matchedKeyStroke
+                        draftKeyStroke = { ...rest, target: tag }
                         onKey && typeof onKey === 'function' && onKey(rest)
                     }
                 }
 
-                setKeyState(draftKeyState)
+                setKeyStroke(draftKeyStroke)
             }
         }
 
@@ -59,7 +59,7 @@ const useKeys = (keyStates: useKeysPropsNew = []) => {
         }
     }, [])
 
-    return { keyState }
+    return { keyStroke }
 }
 
 export { useKeys }
