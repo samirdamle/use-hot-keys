@@ -1,6 +1,6 @@
 # use-keys
 
-Reat hook to enable hot keys in the app. A hot key is a keyboard key pressed when the focus is on the page body, not in a form input field. When a user presses the hot key, the hook provides an updated state for keyState. You can set multiple hot keys while initiating the hook.
+React hook to enable hot keys in the app. A hot key is a keyboard key pressed when the focus is on the page body, not in a form input field. When a user presses the hot key, the hook provides an updated state for keyState. You can set multiple hot keys while initiating the hook.
 
 [![NPM](https://img.shields.io/npm/v/use-keys.svg)](https://www.npmjs.com/package/use-keys) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
