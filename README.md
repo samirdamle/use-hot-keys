@@ -28,9 +28,9 @@ const Example = () => {
                 console.log('onKey() called for / ')
             },
         },
-        // adds hot key for '>' that also works in input fields
+        // adds hot key for '.' that also works in input fields
         {
-            id: 'greaterThan',
+            id: 'period',
             key: '.',
             includeFormElements: true,
         },
