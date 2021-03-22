@@ -1,6 +1,6 @@
 # use-keys
 
-React hook to enable hot keys in the app. A hot key is a keyboard key pressed when the focus is on the page body (i.e. not in an input field). You may optionally enable the hotkey to also work inside a form input field. When a user presses the hot key, the hook provides an updated state for keyState. You may set multiple hot keys while initiating the hook.
+React hook to enable hot keys in the app. A hot key is a keyboard key pressed when the focus is on the page body (i.e. not in an input field). You may optionally enable the hotkey to also work inside a form input field. When a user presses the hot key, the hook provides an updated state as keyStroke. You may set multiple hot keys while initiating the hook.
 
 [![NPM](https://img.shields.io/npm/v/use-keys.svg)](https://www.npmjs.com/package/use-keys) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -18,7 +18,7 @@ import * as React from 'react'
 import { useKeys } from 'use-keys'
 
 const Example = () => {
-    const { keyState } = useKeys([
+    const { keyStroke } = useKeys([
         // adds hot key for '/' when focus is on body, ignores typing in an input field
         {
             id: 'slash', // id can be anything
@@ -50,9 +50,9 @@ const Example = () => {
         },
     ])
 
-    // keyState will be null until user presses a matching keyState
-    // in which case keyState.key will return the key string e.g. '/'
-    return <div>{keyState && keyState.key}</div>
+    // keyStroke will be null until user presses a matching keyStroke
+    // in which case keyStroke.key will return the key string e.g. '/'
+    return <div>{keyStroke && keyStroke.key}</div>
 }
 ```
 
