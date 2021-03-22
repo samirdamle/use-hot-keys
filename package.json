@@ -1,6 +1,6 @@
 {
     "name": "use-keys",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "React hook to enable hot keys in the app. A hot key is a keyboard key pressed when the focus is on the page body, not in a form input field. When a user presses the hot key, the hook provides an updated state for keyState. You can set multiple hot keys while initiating the hook.",
     "author": "samirdamle",
     "license": "MIT",

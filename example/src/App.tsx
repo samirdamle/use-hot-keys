@@ -13,7 +13,7 @@ const App = () => {
         },
         {
             id: 1,
-            key: '>',
+            key: '.',
             includeFormElements: true,
         },
         {
@@ -60,7 +60,7 @@ const App = () => {
                             <td>should work on body</td>
                         </tr>
                         <tr>
-                            <td>&gt;</td>
+                            <td>.</td>
                             <td>should work on body and inside a form field</td>
                         </tr>
                         <tr>

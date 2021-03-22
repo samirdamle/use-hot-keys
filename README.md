@@ -15,14 +15,14 @@ npm install --save use-keys
 ```tsx
 import * as React from 'react'
 
-import useKeys from 'use-keys'
+import { useKeys } from 'use-keys'
 
 const Example = () => {
     const { keyState } = useKeys([
         // adds hot key for '/' when focus is on body, ignores typing in an input field
         {
-            id: 'slash',  // id can be anything
-            key: '/',     // key should match event.key
+            id: 'slash', // id can be anything
+            key: '/', // key should match event.key
             // callback to be called only when this hot key '/' is pressed
             onKey: () => {
                 console.log('onKey() called for / ')
@@ -31,7 +31,7 @@ const Example = () => {
         // adds hot key for '>' that also works in input fields
         {
             id: 'greaterThan',
-            key: '>',
+            key: '.',
             includeFormElements: true,
         },
         // adds hot key for 'Ctrl+x' when focus is on body, ignores typing in an input field
